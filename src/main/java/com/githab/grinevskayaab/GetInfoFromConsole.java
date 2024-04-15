@@ -2,28 +2,34 @@ package com.githab.grinevskayaab;
 
 import java.util.Scanner;
 
-public interface GetInfoFromConsole {
-    static int getRounds() {
+public class GetInfoFromConsole implements GetInfo {
+    @Override
+    public int getRounds() {
         String roundStr = scanValue("Введите количество раундов:");
-        if (isNumber(roundStr) && !roundStr.equals("0")) return Integer.parseInt((roundStr));
+        if (GetInfo.isNumber(roundStr) && !roundStr.equals("0")) return Integer.parseInt((roundStr));
         else return 0; // ошибка
     }
 
-    static String getName() {
+    @Override
+    public String getName() {
         return scanValue("Введите ваше имя:");
     }
 
-    static byte getMode() {
+    @Override
+    public byte getMode() {
         String modeStr = scanValue("Введите режим игры:\n 1 - я + компьютер\n 2 - компьютер + компьютер");
         String testStr = "12";
-        if (isNumber(modeStr) && testStr.contains(modeStr)) return Byte.parseByte(modeStr);
+        if (GetInfo.isNumber(modeStr) && testStr.contains(modeStr)) return Byte.parseByte(modeStr);
         else return 0; // ошибка
     }
 
-    static byte getItemPosition() {
+
+    public static byte getItemPosition() {
+//        String positionItemStr = scanValue("Выберите предмет: 1 - rock, 2 - paper, 3 - scissors, 4 - колодец");
         String positionItemStr = scanValue("Выберите предмет: 1 - rock, 2 - paper, 3 - scissors");
-        String testStr = "123";
-        return testStr.contains(positionItemStr) ? (byte) ((Byte.parseByte(positionItemStr)) - 1) : ((byte) (Math.random() * GameItem.availableItems.length));
+        if (positionItemStr.isEmpty() || !"123".contains(positionItemStr))
+            return ((byte) (Math.random() * GameItem.availableItems.length));
+        return (byte) ((Byte.parseByte(positionItemStr)) - 1);
     }
 
     static String scanValue(String outputStr) {
@@ -32,10 +38,8 @@ public interface GetInfoFromConsole {
         return input.nextLine();
     }
 
-    static boolean isNumber(String str) {
-        for (char c : str.toCharArray()) {
-            if (c < '0' || c > '9') return false;
-        }
-        return true;
+    public void createLog(String log) {
+        System.out.println(log);
     }
+
 }
