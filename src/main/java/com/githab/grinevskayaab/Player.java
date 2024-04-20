@@ -1,10 +1,10 @@
 package com.githab.grinevskayaab;
 
-public class Player {
+public abstract class Player {
     private final String name;
-    private int points = 0;
+    private Integer score = 0;
 
-    Player(String name) {
+    public Player(String name) {
         this.name = name;
     }
 
@@ -12,15 +12,13 @@ public class Player {
         return this.name;
     }
 
-    public void addPoint() {
-        this.points++;
+    public void addScore() {
+        this.score++;
     }
 
-    public int getPoint(){
-        return this.points;
+    public Integer getScore(){
+        return this.score;
     }
 
-    GameItem getItem() {
-        return null;
-    }
+    public abstract Hand getHand();
 }

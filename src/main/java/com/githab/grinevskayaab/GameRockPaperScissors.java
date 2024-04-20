@@ -1,65 +1,73 @@
 package com.githab.grinevskayaab;
 
-public class GameRockPaperScissors extends GetInfoFromConsole {
-    public int roundCounter;
-    public int playersCounter = 3;
-    public byte mode; // 1- человек + компьютер; 2 - компьютер + компьютер
+import java.util.ArrayList;
+import java.util.Objects;
 
-    Player[] players = new Player[playersCounter];
+public class GameRockPaperScissors {
+    private final Integer maxRounds;
+    private final ArrayList<Player> players;
 
-    GameRockPaperScissors() {
-        this.roundCounter = getRounds();
-        this.mode = getMode();
+    public GameRockPaperScissors(GameOptions gameOptions) {
+        this.maxRounds = gameOptions.getMaxRounds();
+        this.players = gameOptions.getPlayer();
     }
 
-
-    public void createPlayers() {
-        for (int i = 0; i < this.playersCounter; i++) {
-            //если нужен человек - добавляем на 1-ой итареции
-            if (this.mode == 1 && i == 0)
-                players[i] = new PlayerHuman(getName());
-            else players[i] = new PlayerComputer("computer" + (i + 1));
-        }
-    }
-
-    public boolean startOptionsIsCorrect() {
-        return this.roundCounter > 0 && (this.mode == 1 || this.mode == 2);
-    }
-
-
-    int getWinnerThisRound(GameItem[] items) {
-        int winnerPosition = -1;
-        for (int i = 0; i < items.length && winnerPosition == -1; i++) {
-            GameItem checkedItem = items[i]; //проверяемый элемент
-            boolean itemWin = true; // по умолчанию считаем победителем
-            //перебор остальных предметов коллекции
-            for (int j = 0; j < items.length; j++) {
-                if(j == i) continue;
-                //если нашелся в коллекции предмет сильнее проверяемого - проигрыш
-                if (items[j].type.equals(items[i].type) ||checkedItem.itemWhoWins.contains(items[j].type)) {
-                    itemWin = false;
-                    break;
-                }
+    public void start() {
+        while (true) {
+            ArrayList<Hand> hands = new ArrayList<>();
+            ArrayList<Player> winPlayers = new ArrayList<>();
+            for (Player player : players) {
+                Hand hand = player.getHand();
+                hands.add(hand);
+                createLog(player.getName() + " выбрал " + hand.getName());
             }
-            //не нашлось предмета сильнее - выигрыш
-            if (itemWin) winnerPosition = i;
-        }
 
-        return winnerPosition;
+            for (int i = 0; i < hands.size(); i++) {
+                boolean beats = false;
+                Hand hand = hands.get(i);
+
+                for (Hand otherHand : hands) {
+                    if (hand.equals(otherHand)) continue;
+                    beats = hand.beats(otherHand);
+                    if (!beats) break;
+                }
+
+                if (beats) winPlayers.add(players.get(i));
+            }
+
+            if (winPlayers.isEmpty()) {
+                createLog("В этом раунде нет победителя\n");
+            } else {
+                for (Player player : winPlayers) {
+                    player.addScore();
+                }
+                showScore(players);
+                if (gameEnd(players)) break;
+            }
+        }
     }
 
-    void showCurrentPoints() {
-        StringBuilder log = new StringBuilder("Текущий счет: \n");
+    private boolean gameEnd(ArrayList<Player> players) {
+        boolean result = false;
         for (Player player : players) {
-            log.append(player.getName()).append(" - ").append(player.getPoint()).append("\n");
+            if (Objects.equals(player.getScore(), maxRounds)) {
+                result = true;
+                createLog("Победитель - " + player.getName());
+                break;
+            }
         }
-        createLog(new String(log));
+        return result;
     }
 
-    int getWinnerAllGame() {
-        for (int j = 0; j < players.length; j++) {
-            if (players[j].getPoint() == this.roundCounter) return j;
+    private void showScore(ArrayList<Player> players) {
+        createLog("Текущий счет:");
+        for (Player player : players) {
+            createLog(player.getName() + "-" + player.getScore());
         }
-        return -1;
+        createLog("");
+    }
+
+    private void createLog(String log) {
+        System.out.println(log);
     }
 }
