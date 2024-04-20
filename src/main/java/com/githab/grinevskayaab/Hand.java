@@ -12,16 +12,16 @@ public enum Hand {
     PAPER("Бумага") {
         @Override
         public Boolean beats(Hand otherHand) {
-//            return Objects.equals(otherHand.getName(), ROCK.name) || Objects.equals(otherHand.getName(), WELL.name);
-            return Objects.equals(otherHand.getName(), ROCK.name);
+            return Objects.equals(otherHand.getName(), ROCK.name) || Objects.equals(otherHand.getName(), WELL.name);
+//            return Objects.equals(otherHand.getName(), ROCK.name);
         }
     },
-    //    WELL("Колодец") {
-//        @Override
-//        public Boolean beats(Hand otherHand) {
-//            return Objects.equals(otherHand.getName(), ROCK.name) || Objects.equals(otherHand.getName(), SCISSORS.name);
-//        }
-//    },
+        WELL("Колодец") {
+        @Override
+        public Boolean beats(Hand otherHand) {
+            return Objects.equals(otherHand.getName(), ROCK.name) || Objects.equals(otherHand.getName(), SCISSORS.name);
+        }
+    },
     SCISSORS("Ножницы") {
         @Override
         public Boolean beats(Hand otherHand) {
