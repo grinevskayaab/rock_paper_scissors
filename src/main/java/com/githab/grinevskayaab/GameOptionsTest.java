@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GameOptionsTest implements GameOptions {
     @Override
-    public ArrayList<Player> getPlayer() {
+    public ArrayList<Player> getPlayers() {
         ArrayList<Player> players = new ArrayList<>();
 
         int counterPlayers = 3;

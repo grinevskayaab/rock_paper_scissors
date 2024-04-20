@@ -9,7 +9,7 @@ public class GameRockPaperScissors {
 
     public GameRockPaperScissors(GameOptions gameOptions) {
         this.maxRounds = gameOptions.getMaxRounds();
-        this.players = gameOptions.getPlayer();
+        this.players = gameOptions.getPlayers();
     }
 
     public void start() {

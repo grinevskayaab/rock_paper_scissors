@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class GameOptionsConsole implements GameOptions {
     @Override
-    public ArrayList<Player> getPlayer() {
+    public ArrayList<Player> getPlayers() {
         ArrayList<Player> players = new ArrayList<>();
         Scanner input = new Scanner(System.in);
 
