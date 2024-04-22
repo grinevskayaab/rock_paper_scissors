@@ -3,6 +3,7 @@ package com.githab.grinevskayaab;
 public abstract class Player {
     private final String name;
     private Integer score = 0;
+    protected Hand lastHand;
 
     public Player(String name) {
         this.name = name;
@@ -19,6 +20,9 @@ public abstract class Player {
     public Integer getScore(){
         return this.score;
     }
+    public Hand getLastHand() {
+        return lastHand;
+    }
 
-    public abstract Hand getHand();
+    public abstract void getHand();
 }

@@ -13,7 +13,6 @@ public enum Hand {
         @Override
         public Boolean beats(Hand otherHand) {
             return Objects.equals(otherHand.getName(), ROCK.name) || Objects.equals(otherHand.getName(), WELL.name);
-//            return Objects.equals(otherHand.getName(), ROCK.name);
         }
     },
         WELL("Колодец") {

@@ -9,7 +9,7 @@ public class PlayerHuman extends Player {
     }
 
     @Override
-    public Hand getHand() {
+    public void getHand() {
         Hand[] hands = Hand.values();
         StringBuilder outputStr = new StringBuilder("Выберите руку:");
         for(Hand hand : hands) {
@@ -18,6 +18,6 @@ public class PlayerHuman extends Player {
         System.out.println(outputStr);
         Scanner input = new Scanner(System.in);
 
-        return hands[input.nextInt()];
+        this.lastHand = hands[input.nextInt()];
     }
 }

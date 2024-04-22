@@ -6,8 +6,8 @@ public class PlayerComputer extends Player {
     }
 
     @Override
-    public Hand getHand() {
+    public void getHand() {
         Hand[] hands = Hand.values();
-        return hands[(int) (Math.random() * hands.length)];
+        this.lastHand =  hands[(int) (Math.random() * hands.length)];
     }
 }
