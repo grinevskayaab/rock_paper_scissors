@@ -13,7 +13,7 @@ public class GameRockPaperScissors {
         this.players = gameOptions.getPlayers();
     }
 
-    public void start() {
+    public void start()  {
         do {
             throwHands();
             showResultRound(getWinPlayers());
@@ -66,6 +66,8 @@ public class GameRockPaperScissors {
             if (Objects.equals(player.getScore(), maxRounds)) {
                 result = true;
                 createLog("Победитель - " + player.getName());
+                Leaderboard leaderboard = new FileLeaderboard();
+                leaderboard.changeLeaderboard(player.getName());
                 break;
             }
         }
