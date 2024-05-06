@@ -1,5 +1,7 @@
-package com.githab.grinevskayaab;
+package com.githab.grinevskayaab.player;
 
+
+import com.githab.grinevskayaab.hand.Hand;
 
 import java.util.Scanner;
 

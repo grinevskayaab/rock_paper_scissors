@@ -1,6 +1,6 @@
 
 
-import com.githab.grinevskayaab.Hand;
+import com.githab.grinevskayaab.hand.Hand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

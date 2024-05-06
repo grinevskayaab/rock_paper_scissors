@@ -1,4 +1,4 @@
-package com.githab.grinevskayaab;
+package com.githab.grinevskayaab.hand;
 
 import java.util.Objects;
 

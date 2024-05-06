@@ -1,4 +1,6 @@
-package com.githab.grinevskayaab;
+package com.githab.grinevskayaab.gameOptions;
+
+import com.githab.grinevskayaab.player.Player;
 
 import java.util.ArrayList;
 

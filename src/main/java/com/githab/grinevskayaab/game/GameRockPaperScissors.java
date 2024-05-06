@@ -1,4 +1,10 @@
-package com.githab.grinevskayaab;
+package com.githab.grinevskayaab.game;
+
+import com.githab.grinevskayaab.gameOptions.GameOptions;
+import com.githab.grinevskayaab.hand.Hand;
+import com.githab.grinevskayaab.leaderboard.FileLeaderboard;
+import com.githab.grinevskayaab.leaderboard.Leaderboard;
+import com.githab.grinevskayaab.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;

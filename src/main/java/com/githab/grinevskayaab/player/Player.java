@@ -1,4 +1,6 @@
-package com.githab.grinevskayaab;
+package com.githab.grinevskayaab.player;
+
+import com.githab.grinevskayaab.hand.Hand;
 
 public abstract class Player {
     private final String name;
