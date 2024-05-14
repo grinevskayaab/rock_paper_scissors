@@ -24,17 +24,18 @@ public class FileLeaderboard implements Leaderboard {
         try {
             if (file.createNewFile()) {
                 writeDefaultText();
-                result = FILE_EXIST;
-            } else {
-                ListPlayers leaderTable = getLeaderTableFromFile();
-                if (leaderTable.getListPlayer().isEmpty()) {
-                    writeDefaultText();
-                    result = FILE_EXIST;
-                } else {
-                    Map<String,Integer> sortLeaderTable = sortMapOfValue(leaderTable.getListPlayer());
-                    result = convertMapToString(sortLeaderTable);
-                }
+                return FILE_EXIST;
             }
+
+            ListPlayers leaderTable = getLeaderTableFromFile();
+            if (leaderTable.getListPlayer().isEmpty()) {
+                writeDefaultText();
+                return FILE_EXIST;
+            }
+
+            Map<String, Integer> sortLeaderTable = sortMapOfValue(leaderTable.getListPlayer());
+            result = convertMapToString(sortLeaderTable);
+
         } catch (IOException e) {
             System.out.println(FILE_ERROR);
             e.printStackTrace();
@@ -49,17 +50,17 @@ public class FileLeaderboard implements Leaderboard {
             if (file.createNewFile()) {
                 writeDefaultText();
                 System.out.println(FILE_EXIST);
-            } else {
-                ListPlayers leaderTable = getLeaderTableFromFile();
-                if (leaderTable.getListPlayer().isEmpty()) {
-                    writeDefaultText();
-                    leaderTable = getLeaderTableFromFile();
-                }
-                leaderTable.getListPlayer().merge(name, 1, Integer::sum);
-
-                mapper.writeValue(file, leaderTable);
+                return;
             }
 
+            ListPlayers leaderTable = getLeaderTableFromFile();
+            if (leaderTable.getListPlayer().isEmpty()) {
+                writeDefaultText();
+                leaderTable = getLeaderTableFromFile();
+            }
+
+            leaderTable.getListPlayer().merge(name, 1, Integer::sum);
+            mapper.writeValue(file, leaderTable);
         } catch (IOException e) {
             System.out.println(FILE_ERROR);
             e.printStackTrace();

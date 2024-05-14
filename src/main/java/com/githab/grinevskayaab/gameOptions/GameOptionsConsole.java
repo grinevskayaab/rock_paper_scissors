@@ -5,13 +5,14 @@ import com.githab.grinevskayaab.player.PlayerComputer;
 import com.githab.grinevskayaab.player.PlayerHuman;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class GameOptionsConsole implements GameOptions {
     private final Scanner scanner = new Scanner(System.in);
     @Override
-    public ArrayList<Player> getPlayers() {
-        ArrayList<Player> players = new ArrayList<>();
+    public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
 
         System.out.println("Введите режим игры: 1 - я + бот, 2 - бот + бот ");
         int mode = scanner.nextInt();

@@ -4,11 +4,12 @@ import com.githab.grinevskayaab.player.Player;
 import com.githab.grinevskayaab.player.PlayerComputer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameOptionsTest implements GameOptions {
     @Override
-    public ArrayList<Player> getPlayers() {
-        ArrayList<Player> players = new ArrayList<>();
+    public List<Player> getPlayers() {
+        List<Player> players = new ArrayList<>();
 
         int counterPlayers = 3;
         for (int i = 0; i < counterPlayers; i++) {
